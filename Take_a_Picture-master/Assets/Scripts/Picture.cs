@@ -5,8 +5,10 @@ using UnityEngine;
 public class Picture : MonoBehaviour {
     ScoreKeeper scoreKeeper;
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField] GameObject prefab;
+
+    // Use this for initialization
+    void Start () {
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
 	}
 	
@@ -19,6 +21,7 @@ public class Picture : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
+            Instantiate(prefab, new Vector3(26f, 0, 10f), Quaternion.identity);
             Destroy(this.gameObject);
             scoreKeeper.Score(1);
         }
