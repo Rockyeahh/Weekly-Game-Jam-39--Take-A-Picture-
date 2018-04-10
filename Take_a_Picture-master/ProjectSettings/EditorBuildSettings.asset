@@ -15,13 +15,16 @@ EditorBuildSettings:
     path: Assets/Scenes/01b Options.unity
     guid: 2362279b1d822834cad4632c4646655e
   - enabled: 1
-    path: Assets/Scenes/02a Level_01.unity
+    path: Assets/Scenes/Old Junk Scenes/old_02a Level_01.unity
     guid: f42bb0f924f92e64e93cc7b5c1f67773
   - enabled: 1
     path: Assets/Scenes/03a Win Screen.unity
     guid: c5f4a2123ca71c242bd466245a45bdf6
   - enabled: 1
-    path: Assets/Scenes/Level_01.unity
+    path: Assets/Scenes/03b Lose Screen.unity
+    guid: 0f7ce6bc99ce83841953dda4d2599eec
+  - enabled: 1
+    path: Assets/Scenes/02a Level_01.unity
     guid: 1f2bb19aaf0f6024e831bcfd2f7379e8
   - enabled: 1
     path: Assets/Scenes/Test Zone Project.unity

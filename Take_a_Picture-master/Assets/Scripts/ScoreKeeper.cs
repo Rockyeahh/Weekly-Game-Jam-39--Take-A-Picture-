@@ -30,7 +30,7 @@ public class ScoreKeeper : MonoBehaviour {
     public void Reset()
     {
         score = 0;
-        print(score + " score reset");
+        //print(score + " score reset");
     }
 
 }

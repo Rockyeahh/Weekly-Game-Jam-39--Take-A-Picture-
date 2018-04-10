@@ -554,6 +554,7 @@ GameObject:
   - component: {fileID: 195389139865577868}
   - component: {fileID: 114837583199367860}
   - component: {fileID: 114205958400272706}
+  - component: {fileID: 114080642566975430}
   m_Layer: 0
   m_Name: AI_Enemy
   m_TagString: Untagged
@@ -1185,6 +1186,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114080642566975430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1957906563632808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b05e2396b78398b4ba9faf29dcdf77fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypointDistance: 1
 --- !u!114 &114205958400272706
 MonoBehaviour:
   m_ObjectHideFlags: 1
