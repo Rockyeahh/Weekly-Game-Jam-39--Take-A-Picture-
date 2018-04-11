@@ -10,16 +10,16 @@ public class ScoreKeeper : MonoBehaviour {
     public static int score = 0;
     public int currentScore; // Stores the current score. Future proof in case there is a level 2.
 
-
+    public int picturesInLevel = 0;
     void Start () {
-        levelScore.text = score.ToString();
+        picturesInLevel = FindObjectsOfType<Picture>().Length;
+        Score(0);
     }
 
     public void Score(int points)
     {
         score += points;//adds to what it currently equals or simply increased by.
-        levelScore.text = score.ToString();
-        //print(score);
+        levelScore.text = "Pictures Taken: " + score.ToString() + "/" + picturesInLevel;
     }
 
     public void saveScore()

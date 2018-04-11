@@ -72,8 +72,9 @@ public class Patrol_Pursue_AI : MonoBehaviour
             }
             if ((transform.position - playerTransform.position).magnitude < captureRadius)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 ScoreKeeper.score = 0;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                
                 //SceneManager.LoadScene("03b Lose Screen");
             }
         }
