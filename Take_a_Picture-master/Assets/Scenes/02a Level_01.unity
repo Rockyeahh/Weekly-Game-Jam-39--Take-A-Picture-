@@ -1899,6 +1899,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114080642566975430, guid: 2328f58f61b3bfb4a8e319771c6a3fbd,
+        type: 2}
+      propertyPath: pursueRadius
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2328f58f61b3bfb4a8e319771c6a3fbd, type: 2}
   m_IsPrefabParent: 0
@@ -6306,6 +6311,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114080642566975430, guid: 2328f58f61b3bfb4a8e319771c6a3fbd,
+        type: 2}
+      propertyPath: pursueRadius
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2328f58f61b3bfb4a8e319771c6a3fbd, type: 2}
   m_IsPrefabParent: 0
@@ -8366,6 +8376,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114080642566975430, guid: 2328f58f61b3bfb4a8e319771c6a3fbd,
+        type: 2}
+      propertyPath: pursueRadius
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2328f58f61b3bfb4a8e319771c6a3fbd, type: 2}
   m_IsPrefabParent: 0
@@ -8619,6 +8634,11 @@ Prefab:
         type: 2}
       propertyPath: captureRadius
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114080642566975430, guid: 2328f58f61b3bfb4a8e319771c6a3fbd,
+        type: 2}
+      propertyPath: pursueRadius
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2328f58f61b3bfb4a8e319771c6a3fbd, type: 2}
@@ -10926,6 +10946,11 @@ Prefab:
     - target: {fileID: 1957906563632808, guid: 2328f58f61b3bfb4a8e319771c6a3fbd, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114080642566975430, guid: 2328f58f61b3bfb4a8e319771c6a3fbd,
+        type: 2}
+      propertyPath: pursueRadius
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2328f58f61b3bfb4a8e319771c6a3fbd, type: 2}

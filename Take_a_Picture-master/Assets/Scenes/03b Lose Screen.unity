@@ -585,6 +585,10 @@ Prefab:
       propertyPath: levelScore
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1843920263990864, guid: e0d6a86affd92dd4b931f04025653d48, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e0d6a86affd92dd4b931f04025653d48, type: 2}
   m_IsPrefabParent: 0

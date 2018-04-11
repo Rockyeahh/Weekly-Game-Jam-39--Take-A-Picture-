@@ -5,6 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    public bool AlarmSounded = false;
+    public float AlarmDuration = 10f;
+    private float alarmTimeLeft = 0f;
+    public void SoundAlarm()
+    {
+        alarmTimeLeft = AlarmDuration;
+        AlarmSounded = true;
+    }
+
+    void Update()
+    {
+        if (alarmTimeLeft > 0)
+        {
+            alarmTimeLeft -= Time.deltaTime;
+        }
+        else
+        {
+            AlarmSounded = false;
+        }
+    }
+
 
     public float autoLoadNextLevelAfter;
 

@@ -22,6 +22,7 @@ public class Picture : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             Instantiate(prefab, new Vector3(26f, 0, 10f), Quaternion.identity);
+            FindObjectOfType<LevelManager>().SoundAlarm();
             Destroy(this.gameObject);
             scoreKeeper.Score(1);
         }

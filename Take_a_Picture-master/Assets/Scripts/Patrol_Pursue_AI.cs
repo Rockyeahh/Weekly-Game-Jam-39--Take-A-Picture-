@@ -6,17 +6,36 @@ using UnityEngine.SceneManagement;
 
 public class Patrol_Pursue_AI : MonoBehaviour
 {
-    enum EnemyState { patrolling, pursuing };
+    public enum EnemyStates { patrolling, pursuing };
     public static Waypoint[] Waypoints;
     private UnityStandardAssets.Characters.ThirdPerson.AICharacterControl AI;
-    private EnemyState enemyState = EnemyState.patrolling;
+    public EnemyStates EnemyState
+    {
+        get { return enemyState; }
+        set
+        {
+            if (enemyState != value)
+            {
+                enemyState = value;
+                if (enemyState == Patrol_Pursue_AI.EnemyStates.patrolling)
+                {
+                    FindNextWaypoint();
+                }
+            }
+        }
+    }
+    private EnemyStates enemyState = EnemyStates.patrolling;
     public float patrolSpeed = 0.75f;
     public float pursueSpeed = 1f;
     private static Transform playerTransform;
     public float captureRadius = 2f;
+    public float pursueRadius = 10f;
+    public static LevelManager levelManager;
+    private Transform lastWaypoint;
 
     void Awake()
     {
+        levelManager = FindObjectOfType<LevelManager>();
         Waypoints = FindObjectsOfType<Waypoint>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         AI = GetComponent<UnityStandardAssets.Characters.ThirdPerson.AICharacterControl>();
@@ -45,17 +64,29 @@ public class Patrol_Pursue_AI : MonoBehaviour
 
     void Update()
     {
-        if ((transform.position - playerTransform.position).magnitude < captureRadius)
+        if ((transform.position - playerTransform.position).magnitude < pursueRadius)
         {
-            SceneManager.LoadScene("03b Lose Screen");
+            if (levelManager.AlarmSounded)
+            {
+                enemyState = EnemyStates.pursuing;
+            }
+            if ((transform.position - playerTransform.position).magnitude < captureRadius)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                //SceneManager.LoadScene("03b Lose Screen");
+            }
+        }
+        else
+        {
+            enemyState = EnemyStates.patrolling;
         }
 
         switch (enemyState)
         {
-            case EnemyState.patrolling:
+            case EnemyStates.patrolling:
                 Patrol();
                 break;
-            case EnemyState.pursuing:
+            case EnemyStates.pursuing:
                 Pursue();
                 break;
         }
@@ -64,6 +95,7 @@ public class Patrol_Pursue_AI : MonoBehaviour
     private void Pursue()
     {
         AI.agent.speed = pursueSpeed;
+        AI.target = playerTransform;
         //TODO: Check for lost sight of player [else if Patrol]
         throw new NotImplementedException();
     }
@@ -78,6 +110,7 @@ public class Patrol_Pursue_AI : MonoBehaviour
     private void FindNextWaypoint()//Todo: fix this. It currently just grabs one at random 
     {
         AI.target = Waypoints[UnityEngine.Random.Range(0, Waypoints.Length)].transform;
+        lastWaypoint = AI.target;
     }
 
 
