@@ -28,6 +28,7 @@ public class Picture : MonoBehaviour {
             FindObjectOfType<LevelManager>().SoundAlarm();
             Destroy(this.gameObject);
             scoreKeeper.Score(1);
+            AudioManager.Instance.Playclip(0);
         }
     }
 }
