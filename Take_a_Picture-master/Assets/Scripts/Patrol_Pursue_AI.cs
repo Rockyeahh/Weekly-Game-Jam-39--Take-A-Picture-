@@ -73,6 +73,7 @@ public class Patrol_Pursue_AI : MonoBehaviour
             if ((transform.position - playerTransform.position).magnitude < captureRadius)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                ScoreKeeper.score = 0;
                 //SceneManager.LoadScene("03b Lose Screen");
             }
         }
@@ -96,8 +97,7 @@ public class Patrol_Pursue_AI : MonoBehaviour
     {
         AI.agent.speed = pursueSpeed;
         AI.target = playerTransform;
-        //TODO: Check for lost sight of player [else if Patrol]
-        throw new NotImplementedException();
+
     }
 
     private void Patrol()
