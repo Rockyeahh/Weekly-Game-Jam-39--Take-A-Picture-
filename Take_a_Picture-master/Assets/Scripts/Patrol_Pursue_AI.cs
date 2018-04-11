@@ -19,20 +19,14 @@ public class Patrol_Pursue_AI : MonoBehaviour
     public static Transform playerTransform;
     public float captureRadius = 2f;
 
-    void Awake()
-    {
-
-        //if (Waypoints.Length == 0)
-        {
-            Waypoints = FindObjectsOfType<Waypoint>();
-            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        }
+    void Awake(){
+		Waypoints = FindObjectsOfType<Waypoint>();
+		playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         AI = GetComponent<UnityStandardAssets.Characters.ThirdPerson.AICharacterControl>();
-        AI.target = GetNearestWaypoint();
     }
 
-    private Transform GetNearestWaypoint()
-    {
+	/*
+    private Transform GetNearestWaypoint(){
         Transform nearestWaypoint = Waypoints[0].transform;
         foreach (Waypoint w in Waypoints)
         {
@@ -44,20 +38,22 @@ public class Patrol_Pursue_AI : MonoBehaviour
         }
         return nearestWaypoint;
     }
+*/
 
-    // Update is called once per frame
-    void Update()
-    {
-        if ((transform.position - playerTransform.position).magnitude < captureRadius)
-        {
+	void Start(){
+		FindWaypoint ();
+	}
+
+
+    void Update(){
+		if ((transform.position - playerTransform.position).magnitude < captureRadius){
             //end level
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name); // I swapped this out for loading the lose screen.
             // load lose screen
             SceneManager.LoadScene("03b Lose Screen");
         }
 
-        switch (enemyState)
-        {
+		switch (enemyState){
             case EnemyState.patrolling:
                 Patrol();
                 break;
@@ -67,8 +63,7 @@ public class Patrol_Pursue_AI : MonoBehaviour
         }
     }
 
-    private void Pursue()
-    {
+    private void Pursue(){
         AI.agent.speed = pursueSpeed;
         //TODO: Check for capture [if in captureRadius AI.agent.speed = pursueSpeed;]
         //  if (playerTransform.position.magnitude < captureRadius){
@@ -78,16 +73,17 @@ public class Patrol_Pursue_AI : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    private void Patrol()
-    {
+    private void Patrol(){
         AI.agent.speed = patrolSpeed;
         //TODO: Check if player is in sight [if player in captureRadius then Pursue]
-        if ((transform.position - AI.target.position).magnitude < waypointDistance)
-        {
-            FindNextWaypoint(); // Why not just call the private GetNearestWaypoint() method?
+		/*
+        if ((transform.position - AI.target.position).magnitude < waypointDistance){
+			FindWaypoint();
         }
+*/
     }
 
+	/*
     private void FindNextWaypoint()//Todo: fix this. It currently just grabs one at random 
     {
         // GameObject[] Waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
@@ -113,4 +109,35 @@ public class Patrol_Pursue_AI : MonoBehaviour
         AI.target = Waypoints[UnityEngine.Random.Range(0, Waypoints.Length)].transform; // This was originally here.
                                                                                         //  }
     }
+*/
+
+
+
+	Vector3 previousWaypointPosition = Vector3.zero;
+	void FindWaypoint(){
+		float lowestDistance = 10000f;
+		Transform nextWaypoint = null;
+		Vector3 currentWaypointPosition = Vector3.zero;
+		if (AI.target != null) {
+			currentWaypointPosition = AI.target.position;
+		}
+		for (int i = 0; i < Waypoints.Length; i++) {
+			Debug.Log ("FindWayPont For Loop");
+			float x = Vector3.Distance (transform.position, Waypoints [i].transform.position);
+			Debug.Log ("Comparing: " +x +"with: " +lowestDistance);
+			if(x < lowestDistance && Waypoints [i].transform.position != previousWaypointPosition && Waypoints [i].transform.position != currentWaypointPosition){
+				lowestDistance = x;
+				nextWaypoint = Waypoints [i].transform;
+			}
+		}
+		previousWaypointPosition = currentWaypointPosition;
+		AI.target = nextWaypoint;
+	}
+
+	void OnTriggerEnter(Collider collider){
+		if (collider.tag == "Waypoint") {
+			FindWaypoint ();
+		}
+	}
+
 }
