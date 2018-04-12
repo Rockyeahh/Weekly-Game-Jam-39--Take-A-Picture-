@@ -18,7 +18,7 @@ public class ScoreKeeper : MonoBehaviour {
     public void Score(int points)
     {
         score += points;//adds to what it currently equals or simply increased by.
-        levelScore.text = "Pictures Taken: " + score.ToString() + "/" + picturesInLevel;
+        levelScore.text = "Pictures Taken: " + score.ToString() + (picturesInLevel==0f ? "" :"/"+picturesInLevel);
     }
 
     public void saveScore()
